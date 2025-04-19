@@ -3,6 +3,5 @@ services:
     name: DCAFITNESS-app
     env: docker
     buildCommand: 'docker build -t dca-fitness .'
-    startCommand: 'docker run -p 10000:80 dca-fitness'
     plan: free
     branch: master

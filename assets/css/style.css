@@ -1,0 +1,47 @@
+/**Diseño Menu Principal**/
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000; /* Fondo negro */
+    color: #FFFFFF; /* Texto blanco */
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: #FFDD00; /* Amarillo brillante */
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    color: #00FF00; /* Verde brillante */
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #FFDD00; /* Amarillo */
+    color: #000000;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #00FF00; /* Verde */
+    color: #FFFFFF;
+}
+
+
+
+
+/**Diseño Ventana Loguin**/
+/**Diseño Ventana Dashboard**/

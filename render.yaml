@@ -6,5 +6,4 @@ services:
     startCommand: 'php -S 0.0.0.0:10000 -t public'
     plan: free
     branch: master
-    regions:
-      - oregon
+   

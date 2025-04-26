@@ -1,6 +1,5 @@
 <?php
-include 'models/db.php'; // Usa la conexión a tu base de datos
-
+include 'models/db.php'; 
 function registrarMovimiento($usuario, $accion) {
     global $conn;
 
@@ -8,7 +7,7 @@ function registrarMovimiento($usuario, $accion) {
     
     if ($stmt = $conn->prepare($query)) {
         $stmt->bind_param("ss", $usuario, $accion);
-        return $stmt->execute(); // true si se ejecuta correctamente
+        return $stmt->execute(); 
     } else {
         return false;
     }

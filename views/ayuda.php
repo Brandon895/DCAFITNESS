@@ -16,7 +16,7 @@
         }
 
         .container {
-            background: linear-gradient(45deg, #28a745, #ffc107); /* Colores verde y amarillo */
+            background: linear-gradient(45deg, #28a745, #ffc107); 
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@
             transition: all 0.3s ease;
             color: white;
             display: flex;
-            align-items: center; /* Alinea el icono y el texto */
+            align-items: center; 
             justify-content: center;
         }
 
@@ -62,7 +62,7 @@
         }
 
         .btn-info i {
-            margin-right: 10px; /* Espacio entre el icono y el texto */
+            margin-right: 10px; 
         }
 
         ul {

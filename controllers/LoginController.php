@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Consulta directamente desde la base de datos
     $sql = "SELECT id, nombreusuario, contrasena, rol FROM usuarios WHERE nombreusuario = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -15,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    // Verificar contraseña (ajustar según si está encriptada o no)
-    if ($user && password_verify($password, $user['contrasena'])) {  // Usa password_verify si las contraseñas están encriptadas
+    // Verificar contraseña 
+    if ($user && password_verify($password, $user['contrasena'])) {  
         $_SESSION['id'] = $user['id'];
         $_SESSION['usuario'] = $user['nombreusuario'];
         $_SESSION['rol'] = $user['rol'];

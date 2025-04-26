@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once '../models/BitacoraAccesosModel.php'; // Asegúrate de que el modelo está correctamente importado
+require_once '../models/BitacoraAccesosModel.php'; 
 
-// Verificar que la sesión esté activa
 if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
     // Registrar el cierre de sesión en la bitácora
     $id_usuario = $_SESSION['id'];

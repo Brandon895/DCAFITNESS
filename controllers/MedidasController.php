@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/models/MedidasModel.php'); // Incluye el modelo de Medidas
+include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/models/MedidasModel.php'); 
 
 class MedidasController {
     private $medidasModel;
@@ -66,7 +66,7 @@ class MedidasController {
         }
     }
 
-    // Nueva función para eliminar una medida
+    // función para eliminar una medida
     public function eliminarMedida($idMedida) {
         return $this->medidasModel->eliminarMedida($idMedida);
     }

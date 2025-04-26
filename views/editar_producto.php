@@ -1,16 +1,13 @@
 <?php
-// Habilitar la visualización de errores para depuración
-error_reporting(E_ALL);  // Reportar todos los errores
-ini_set('display_errors', 1);  // Mostrar los errores
+error_reporting(E_ALL);  
+ini_set('display_errors', 1);  
 
 // Incluir controlador que maneja la lógica de negocio
 require($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
 
-// Verificar si se recibió el id del producto en la URL
 if (isset($_GET['id'])) {
     $idProducto = $_GET['id'];
 
-    // Crear instancia del controlador y obtener los detalles del producto
     $productController = new ProductController();
     $producto = $productController->obtenerProductoPorId($idProducto);
 
@@ -22,7 +19,7 @@ if (isset($_GET['id'])) {
 } else {
     // Si no se recibió un id, redirigir al listado de productos
     header('Location: productos.php');
-    exit; // Aseguramos que no se ejecute el resto del código después de la redirección
+    exit; 
 }
 
 // Comprobar si el formulario ha sido enviado para editar el producto
@@ -35,16 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $precio = $_POST['precio'];
     $descripcion = $_POST['descripcion'];
 
-    // Llamar a la función del controlador para actualizar el producto
     $updateSuccess = $productController->actualizarProducto($idProducto, $nombre, $tipo, $marca, $cantidad, $precio, $descripcion);
 
-    // Verificar si la actualización fue exitosa
     if ($updateSuccess) {
-        // Redirigir después de la actualización
         header('Location: VistaProductos.php');
-        exit; // Aseguramos que no se ejecute el resto del código después de la redirección
+        exit; 
     } else {
-        // Si hubo un error en la actualización
+       
         echo "Hubo un error al actualizar el producto.";
     }
 }
@@ -75,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* Contenedor principal */
         .container {
             max-width: 700px;
-            width: 100%; /* Asegura que el contenedor ocupe todo el espacio necesario */
+            width: 100%; 
         }
 
         /* Estilo de la tarjeta */
@@ -127,13 +121,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .btn {
             font-weight: bold;
     border: none;
-    padding: 20px 60px; /* Tamaño más grande de los botones */
-    font-size: 18px; /* Tamaño de fuente más grande */
-    border-radius: 12px; /* Bordes redondeados */
-    transition: background-color 0.3s ease; /* Transición suave de color al pasar el cursor */
-    text-align: center; /* Centrado del texto en el botón */
-    display: inline-block; /* Permite que los botones estén en línea */
-    margin: 15px; /* Espaciado entre los botones */
+    padding: 20px 60px; 
+    font-size: 18px; 
+    border-radius: 12px; 
+    transition: background-color 0.3s ease; 
+    text-align: center; 
+    display: inline-block; 
+    margin: 15px; 
         }
 
         /* Estilo del botón "Guardar cambios" */

@@ -4,7 +4,7 @@ require_once '../models/BitacoraAccesosModel.php';
 $bitacora = BitacoraAccesosModel::obtenerBitacora();
 
 if (!is_array($bitacora)) {
-    $bitacora = []; // Asegura que no sea NULL y evita errores en el foreach
+    $bitacora = []; 
 }
 ?>
 

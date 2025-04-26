@@ -1,15 +1,11 @@
 <?php
 require_once('../libs/TCPDF/tcpdf.php');
 
-// Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
 
-// Verifica la conexión
 if ($conexion->connect_error) {
     die("Conexión fallida: " . $conexion->connect_error);
 }
-
-// Consulta a la tabla facturas para obtener los detalles necesarios
 $sql = "SELECT 
             f.id_factura, f.fecha_emision, f.total_servicios, f.total_productos, f.total_iva, 
             f.total_a_pagar, f.metodo_pago, c.nombre AS cliente_nombre
@@ -22,7 +18,6 @@ $sql = "SELECT
 
 $resultado = $conexion->query($sql);
 
-// Almacena los datos en un arreglo
 $facturas = [];
 
 if ($resultado && $resultado->num_rows > 0) {
@@ -31,7 +26,6 @@ if ($resultado && $resultado->num_rows > 0) {
     }
 }
 
-// Cierra la conexión
 $conexion->close();
 
 // Función para generar el PDF

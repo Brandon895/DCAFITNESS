@@ -1,12 +1,11 @@
 <?php
-// controllers/FacturacionController.php
 require_once __DIR__ . '/../models/FacturacionModel.php';
 
 class FacturacionController {
     // Función para crear una nueva factura
     public function crearFactura() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Recibiendo los datos del formulario
+        
             $id_cliente = $_POST['id_cliente'];
             $fecha_emision = $_POST['fecha_emision'];
             $fecha_vencimiento = $_POST['fecha_vencimiento'];
@@ -18,7 +17,6 @@ class FacturacionController {
 
             $facturacionModel = new FacturacionModel();
             
-            // Llamar a la función de crear factura en el modelo
             $resultado = $facturacionModel->crearFactura($id_cliente, $fecha_emision, $fecha_vencimiento, $total_servicios, $total_productos, $total_iva, $total_a_pagar, $metodo_pago);
 
             if ($resultado) {
@@ -37,9 +35,8 @@ class FacturacionController {
         $facturas = $facturacionModel->obtenerFacturas();
         
         // Pasar las facturas a la vista
-        require_once __DIR__ . '/../views/VistaFacturacion.php';  // Asegúrate de incluir correctamente la vista
-        require_once __DIR__ . '/../views/VistaReporteFacturas.php';  // Asegúrate de incluir correctamente la vista
-    
+        require_once __DIR__ . '/../views/VistaFacturacion.php';  
+        require_once __DIR__ . '/../views/VistaReporteFacturas.php';  
     }
     
 }

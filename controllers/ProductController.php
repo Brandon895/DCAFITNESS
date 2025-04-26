@@ -1,19 +1,16 @@
 <?php
-// Asegurar que los archivos existen antes de incluirlos
-$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/models/db.php';
-$productModelPath = $_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/models/ProductModel.php';
+$dbPath = __DIR__ . '/../models/db.php';
+$productModelPath = __DIR__ . '/../models/ProductModel.php';
 
-if (file_exists($dbPath)) {
-    include($dbPath);
-} else {
+if (!file_exists($dbPath)) {
     die("Error: No se encontró db.php en la ruta especificada.");
 }
-
-if (file_exists($productModelPath)) {
-    require_once($productModelPath);
-} else {
+if (!file_exists($productModelPath)) {
     die("Error: No se encontró ProductModel.php en la ruta especificada.");
 }
+
+include_once $dbPath;
+include_once $productModelPath;
 
 class ProductController {
 

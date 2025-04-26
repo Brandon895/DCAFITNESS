@@ -1,30 +1,21 @@
 <?php
-// Incluir los archivos necesarios para la conexión a la base de datos y el controlador
 require_once '../controllers/ProductController.php';
 require_once('../libs/tcpdf/tcpdf.php');
 
-// Instanciamos el controlador
 $controller = new ProductController();
 
-// Obtenemos todos los productos desde el controlador
 $productos = $controller->obtenerProductos();
 
-// Verificamos si se ha solicitado la descarga del PDF
 if (isset($_GET['generar_pdf']) && $_GET['generar_pdf'] == 'true') {
-    // Crear una nueva instancia de TCPDF
     $pdf = new TCPDF();
 
-    // Establecer márgenes
     $pdf->SetMargins(15, 25, 15);
     $pdf->SetAutoPageBreak(TRUE, 25);
 
-    // Agregar una página
     $pdf->AddPage();
 
-    // Configurar el contenido del reporte
     $pdf->SetFont('helvetica', '', 12);
 
-    // Cabecera de la tabla con el color verde para los títulos
     $html = '
     <h2 style="text-align: center;">Reporte de Productos</h2> <!-- Centrado en el PDF -->
     <table border="1" cellpadding="5">
@@ -59,12 +50,10 @@ if (isset($_GET['generar_pdf']) && $_GET['generar_pdf'] == 'true') {
 
     $html .= '</tbody></table>';
 
-    // Escribir el contenido en el PDF
     $pdf->writeHTML($html);
 
-    // Descargar el PDF en lugar de mostrarlo en el navegador
-    $pdf->Output('reporte_productos.pdf', 'D'); // 'D' para descarga
-    exit; // Detener el script después de la salida del PDF
+    $pdf->Output('reporte_productos.pdf', 'D'); 
+    exit; 
 }
 ?>
 
@@ -91,7 +80,7 @@ if (isset($_GET['generar_pdf']) && $_GET['generar_pdf'] == 'true') {
             margin-top: 50px;
         }
         .table thead {
-            background-color: #28a745; /* Verde para los títulos */
+            background-color: #28a745; 
             color: white;
         }
         .table-bordered {

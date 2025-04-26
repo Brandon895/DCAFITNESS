@@ -10,6 +10,6 @@
 <body>
     <h1>Bienvenido al Sistema</h1>
     <p class="welcome-text">DCA FITNESS CENTER</p>
-    <a href="views/loguin.php" class="btn">Iniciar sesión</a>  <!-- Asegura la ruta correcta -->
+    <a href="views/loguin.php" class="btn">Iniciar sesión</a>  
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
-// Incluir controlador que maneja la lógica de negocio
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ClienteController.php');
-require_once '../helpers/BitacoraHelper.php'; // Incluir el helper para registrar en la bitácora
+require_once '../helpers/BitacoraHelper.php'; 
 
 if (isset($_GET['id'])) {
     $id_cliente = $_GET['id'];

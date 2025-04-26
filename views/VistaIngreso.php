@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Ingreso</title>
-    <!-- Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -100,7 +99,7 @@
         }
 
         .boton-regresar a button {
-            background-color: #00bcd4; /* Azul celeste */
+            background-color: #00bcd4; 
             color: #fff;
             border-radius: 10px;
             padding: 12px 30px;

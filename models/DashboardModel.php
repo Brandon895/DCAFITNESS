@@ -3,7 +3,6 @@ class DashboardModel {
     private $conexion;
 
     public function __construct() {
-        // Asegúrate de configurar tu conexión a la base de datos
         $this->conexion = new mysqli('localhost', 'root', '0895Gazuniga', 'dcafitness');
         if ($this->conexion->connect_error) {
             die("Error de conexión: " . $this->conexion->connect_error);

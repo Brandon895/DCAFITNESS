@@ -1,6 +1,6 @@
 <?php
 require_once '../models/ClienteModel.php';
-require_once '../helpers/BitacoraHelper.php'; // Asegúrate de incluir el helper
+require_once '../helpers/BitacoraHelper.php'; 
 
 class ClienteController {
     private $clienteModel;
@@ -44,7 +44,7 @@ class ClienteController {
         // Registrar movimiento en la bitácora antes de eliminar el cliente
         BitacoraHelper::registrarMovimiento('se elimino un cliente', 'Cliente', 'Se eliminó un cliente con ID: ' . $id_cliente);
 
-        // Conectar a la base de datos (ajusta según tu configuración)
+        // Conectar a la base de datos
         $conn = new mysqli('localhost', 'root', '0895Gazuniga', 'dcafitness');
         
         if ($conn->connect_error) {

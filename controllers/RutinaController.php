@@ -1,5 +1,5 @@
 <?php
-require_once '../models/RutinaModel.php'; // Asegúrate de la ruta correcta al modelo
+require_once '../models/RutinaModel.php'; 
 
 class RutinaController {
     private $model;
@@ -40,7 +40,7 @@ class RutinaController {
         }
     }
     public function verificarClienteInscrito($cedula) {
-        global $conn;  // Usamos la conexión global definida en db.php
+        global $conn;  
         
         // Consulta para verificar si el cliente está inscrito
         $consulta = "SELECT COUNT(*) FROM clientes WHERE cedula = ?";
@@ -54,7 +54,7 @@ class RutinaController {
             $stmt->execute();
             
             // Obtener el resultado
-            $stmt->bind_result($count);  // Asociamos el resultado con la variable $count
+            $stmt->bind_result($count);  
             $stmt->fetch();
             
             // Si el contador es mayor que 0, significa que el cliente está inscrito

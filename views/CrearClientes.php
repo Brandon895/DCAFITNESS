@@ -1,4 +1,3 @@
-<!-- /views/crear_cliente.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +12,8 @@
     <h2 class="text-center">Crear Nuevo Cliente</h2>
 
     <!-- Formulario para crear cliente -->
-    <form action="/mi_gimnasio/DCAFITNESS/Proyecto/index.php?action=guardarCliente" method="POST">
+    <form action="Clientes.php" method="POST">
+
         <div class="mb-3">
             <label for="cedula" class="form-label">Cédula</label>
             <input type="text" class="form-control" id="cedula" name="cedula" required>

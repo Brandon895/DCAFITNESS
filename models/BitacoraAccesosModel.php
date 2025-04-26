@@ -2,7 +2,7 @@
 class BitacoraAccesosModel {
 
     public static function obtenerBitacora() {
-        require __DIR__ . '/db.php';  // carga $conn
+        require __DIR__ . '/db.php';  
         $sql = "SELECT * FROM bitacora ORDER BY fecha_hora DESC";
         $result = $conn->query($sql);
         return ($result && $result->num_rows > 0)
@@ -11,18 +11,16 @@ class BitacoraAccesosModel {
     }
 
     public static function registrarAcceso($id_usuario, $nombreusuario, $accion) {
-        require __DIR__ . '/db.php';  // carga $conn
+        require __DIR__ . '/db.php'; 
 
         $sql = "INSERT INTO bitacora (id, nombreusuario, fecha_hora, accion)
                 VALUES (?, ?, NOW(), ?)";
         $stmt = $conn->prepare($sql);
 
         if (!$stmt) {
-            error_log("Error en prepare: " . $conn->error); // Muestra el error si falla la preparación
+            error_log("Error en prepare: " . $conn->error); 
             return false;
         }
-
-        // Realiza el bind de los parámetros
         $stmt->bind_param("iss", $id_usuario, $nombreusuario, $accion);
 
         // Ejecuta la consulta

@@ -1,11 +1,13 @@
 <?php
-// Incluir el controlador
-include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
+include_once __DIR__ . '/../controllers/ProductController.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idProducto'])) {
+if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['idProducto'])) {
     $idProducto = $_POST['idProducto'];
 
+    // Crear instancia del controlador
     $productController = new ProductController();
+
+    // Intentar eliminar el producto
     $resultado = $productController->eliminarProducto($idProducto);
 
     if ($resultado) {

@@ -1,5 +1,4 @@
 <?php
-// views/editarUsuario.php
 require_once('../controllers/UsuarioController.php');
 
 $controller = new UsuarioController();
@@ -130,11 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         /* Estilo del botón "Cancelar" */
         .btn-cancel {
-            background-color: #e74c3c; /* Rojo */
+            background-color: #e74c3c; 
             color: white;
             display: inline-block;
             width: auto;
-            text-decoration: none; /* Quitar subrayado */
+            text-decoration: none; 
         }
 
         .btn-cancel:hover {

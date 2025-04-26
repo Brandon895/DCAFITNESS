@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Incluir el helper para la bitácora
 require_once '../helpers/BitacoraHelper.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         /* Estilo general del cuerpo */
         body {
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Aquí pon la URL de la imagen de fondo */
+            background-image: url('https://via.placeholder.com/1920x1080'); 
             background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;

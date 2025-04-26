@@ -1,5 +1,4 @@
 <?php
-// views/verFacturacion.php
 ?>
 <h3>Detalles de la Factura</h3>
 <table class="table">

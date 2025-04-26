@@ -1,9 +1,7 @@
 <?php
-// Habilitar errores para depuración
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Verificar la existencia del archivo antes de incluirlo
 $controllerPath = '../controllers/RutinaController.php';
 if (!file_exists($controllerPath)) {
     die("Error: No se encontró el archivo RutinaController.php");
@@ -11,10 +9,8 @@ if (!file_exists($controllerPath)) {
 
 require_once $controllerPath;
 
-// Instanciamos el controlador
 $controller = new RutinaController();
 
-// Llamamos al método listarRutinas() para obtener todas las rutinas
 $rutinas = $controller->listarRutinas();
 ?>
 

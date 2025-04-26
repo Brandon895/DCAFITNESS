@@ -1,11 +1,11 @@
 <?php
-require_once 'db.php'; // Incluimos la conexión
+require_once 'db.php'; 
 
 class RutinaModel {
     private $conn;
 
     public function __construct() {
-        global $conn; // Usamos la conexión global definida en db.php
+        global $conn; 
         $this->conn = $conn;
     }
 

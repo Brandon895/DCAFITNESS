@@ -1,12 +1,11 @@
 <?php
-// Incluir el archivo de conexión
-include('../models/db.php');  // Asegúrate de que la ruta sea correcta
+include('../models/db.php');  
 
 class VentaProductoController {
 
     // Función para obtener todas las ventas de productos
     public function obtenerVentas() {
-        global $conn; // Usar la conexión global
+        global $conn;
 
         $sql = "SELECT idVenta, nom_producto, cantidad, precio_venta, total, fecha_venta FROM ventas_productos";
         $result = $conn->query($sql);
@@ -44,7 +43,7 @@ class VentaProductoController {
         global $conn;
 
         try {
-            $total = $cantidad * $precio; // No actualizar el total manualmente, es calculado automáticamente
+            $total = $cantidad * $precio; 
 
             // Preparamos la consulta para actualizar la venta
             $sql = "UPDATE ventas_productos 

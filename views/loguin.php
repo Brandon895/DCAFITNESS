@@ -1,8 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['usuario'])) {
-    header("Location: dashboard.php"); // Si el usuario ya está logueado, lo redirigimos
-    // Login exitoso (ejemplo)
+    header("Location: dashboard.php"); 
 $_SESSION['id_usuario'] = $id;
 $_SESSION['nombreusuario'] = $usuario;
 

@@ -23,7 +23,7 @@ $diasOrdenados = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado
 // Personalización de PDF
 class MYPDF extends TCPDF {
     public function Header() {
-        $imageFile = K_PATH_IMAGES . 'logo.png'; // Asegúrate de colocar logo.png en /tcpdf/images/
+        $imageFile = K_PATH_IMAGES . 'logo.png'; 
         if (file_exists($imageFile)) {
             $this->Image($imageFile, 15, 10, 25, '', 'PNG', '', 'T', false, 300);
         }

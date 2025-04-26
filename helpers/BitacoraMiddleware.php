@@ -1,7 +1,6 @@
 <?php
 require_once '../models/BitacoraModel.php';
 
-// Esta función será llamada automáticamente antes de cualquier acción importante.
 function registrarMovimientoAutomático() {
     // Verificar si la sesión está iniciada
     if (session_status() == PHP_SESSION_NONE) {
@@ -23,17 +22,13 @@ function registrarMovimientoAutomático() {
     }
 }
 
-// Esta función se encargaría de determinar la acción realizada. Ejemplo: "Se eliminó un cliente".
-// Podrías tener diferentes tipos de acciones según el flujo de tu aplicación.
 function obtenerAccionActual() {
-    // Aquí puedes definir diferentes tipos de acción, dependiendo de lo que estés haciendo en cada momento
-    // Por ejemplo, si se elimina un cliente o si se realiza alguna otra acción importante.
+
     
     // Este ejemplo asume que estás eliminando un cliente
     if (isset($_GET['accion']) && $_GET['accion'] == 'eliminar_cliente') {
         return "Se eliminó un cliente con ID: " . $_GET['id_cliente'];
     }
     
-    // Otras acciones que podrían estar en tu aplicación (puedes agregar más condiciones aquí)
     return "Acción no definida";
 }

@@ -1,7 +1,5 @@
 <?php
-// models/UsuarioModel.php
 require_once('C:/laragon/www/mi_gimnasio/DCAFITNESS/Proyecto/models/db.php');
-// Se ajusta la ruta según la estructura
 
 class UsuarioModel {
 

@@ -1,5 +1,4 @@
 <?php 
-// controllers/UsuarioController.php
 require_once('../models/UsuarioModel.php');
 
 class UsuarioController {

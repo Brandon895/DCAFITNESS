@@ -98,6 +98,23 @@ class ClienteModel {
 
         return $stmt->execute();
     }
+    public function registrarPago($id_cliente, $monto, $metodo_pago, $descripcion) {
+        $fecha_pago = date("Y-m-d H:i:s"); // Obtener la fecha y hora actual
+        
+        // Insertar el pago en la base de datos
+        $sql = "INSERT INTO pagos (id_cliente, monto, metodo_pago, descripcion, fecha_pago) 
+                VALUES (?, ?, ?, ?, ?)";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("iisss", $id_cliente, $monto, $metodo_pago, $descripcion, $fecha_pago);
+
+        // Ejecutar la consulta y verificar si fue exitosa
+        if ($stmt->execute()) {
+            return true; // Pago registrado exitosamente
+        } else {
+            return false; // Error al registrar el pago
+        }
+    }
 
     // ✅ Verificar membresía
     public function verificarMembresia($cedula) {

@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/db.php';
 
-// Verificar si se ha pasado el ID de la factura
 if (isset($_GET['id_factura'])) {
     $id_factura = $_GET['id_factura'];
 

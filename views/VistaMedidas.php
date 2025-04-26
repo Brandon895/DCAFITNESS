@@ -1,17 +1,15 @@
 <?php
-// Incluir controlador que maneja la lógica de negocio
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/MedidasController.php');
 
 $medidasController = new MedidasController();
 
-// Verificar si se ha enviado una solicitud de eliminación por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_id'])) {
     $medidasController->eliminarMedida($_POST['eliminar_id']);
     header("Location: VistaMedidas.php");
     exit();
 }
 
-$medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre es un array
+$medidas = $medidasController->obtenerMedidas() ?? []; 
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +30,7 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
         }
 
         .container {
-            background: linear-gradient(45deg, #28a745, #ffc107); /* Colores verde y amarillo */
+            background: linear-gradient(45deg, #28a745, #ffc107); 
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -46,29 +44,29 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
         }
 
         .table thead {
-            background-color: #28a745; /* Verde */
+            background-color: #28a745; 
             color: white;
             text-align: center;
             border-radius: 15px;
         }
 
         .table tbody tr:nth-of-type(odd) {
-            background-color: #e2f9e2; /* Verde claro */
+            background-color: #e2f9e2; 
         }
 
         .table tbody tr:nth-of-type(even) {
-            background-color: #fff; /* Blanco */
+            background-color: #fff; 
         }
 
         .table tbody tr:hover {
-            background-color: #d3f5d3; /* Verde más suave */
+            background-color: #d3f5d3; 
         }
 
         .btn-success, .btn-danger, .btn-warning, .btn-primary {
             border: none;
             border-radius: 10px;
             padding: 12px 25px;
-            font-size: 16px;  /* Tamaño de letra uniforme */
+            font-size: 16px;  
             transition: all 0.3s ease;
             color: white;
         }
@@ -80,7 +78,7 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
 
         .btn-container {
             display: flex;
-            justify-content: space-between; /* Asegura que los botones estén separados */
+            justify-content: space-between; 
             margin-top: 20px;
         }
 
@@ -92,15 +90,15 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
         .form-search input {
             width: 85%;
             padding: 10px;
-            border-radius: 10px; /* Bordes rectos */
+            border-radius: 10px; 
             font-size: 16px;
         }
 
         .form-search button {
             width: 12%;
             padding: 10px;
-            border-radius: 10px; /* Bordes rectos */
-            background-color: #ffc107; /* Amarillo */
+            border-radius: 10px; 
+            background-color: #ffc107; 
             color: white;
             border: none;
             font-size: 16px;
@@ -137,7 +135,6 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
             margin-bottom: 25px;
         }
 
-        /* Iconos de los botones */
         .btn i {
             margin-right: 8px;
         }
@@ -158,65 +155,63 @@ $medidas = $medidasController->obtenerMedidas() ?? []; // Asegurar que siempre e
             margin-right: 10px;
         }
 
-        /* Separación de botones */
         .btn-container a {
             margin-right: 10px;
         }
 
-        /* Asegurar que el tamaño de los botones Editar y Eliminar sea el mismo */
         .btn-sm {
-            font-size: 16px; /* Tamaño de letra uniforme */
-            min-width: 100px;  /* Asegura el mismo tamaño de los botones */
+            font-size: 16px; 
+            min-width: 100px;  
         }
 
         .btn-container div {
             display: flex;
-            gap: 10px;  /* Separación entre los botones */
+            gap: 10px; 
         }
 
-        /* Botones específicos */
+        
         .btn-editar {
-            background-color: #ffc107; /* Amarillo */
+            background-color: #ffc107; 
             color: white;
         }
 
         .btn-editar:hover {
-            background-color: #e0a800; /* Amarillo más oscuro */
+            background-color: #e0a800; 
         }
 
         .btn-crear {
-            background-color: #28a745; /* Verde */
+            background-color: #28a745; 
             color: white;
         }
 
         .btn-crear:hover {
-            background-color: #218838; /* Verde más oscuro */
+            background-color: #218838; 
         }
 
         .btn-eliminar {
-            background-color: #dc3545; /* Rojo */
+            background-color: #dc3545; 
             color: white;
         }
 
         .btn-eliminar:hover {
-            background-color: #c82333; /* Rojo más oscuro */
+            background-color: #c82333; 
         }
 
-        /* Botón de regresar en azul */
+       
         .btn-regresar {
-            background-color: #007bff; /* Azul */
+            background-color: #007bff; 
             color: white;
         }
 
         .btn-regresar:hover {
-            background-color: #0056b3; /* Azul más oscuro */
-            color: black; /* Letra negra cuando se pasa el mouse */
-            transform: translateY(2px); /* Efecto de presionar */
+            background-color: #0056b3; 
+            color: black; 
+            transform: translateY(2px); 
         }
 
         .btn-crear:hover {
-            color: black; /* Letra negra cuando se pasa el mouse */
-            transform: translateY(2px); /* Efecto de presionar */
+            color: black; 
+            transform: translateY(2px); 
         }
     </style>
 </head>

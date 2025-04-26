@@ -3,7 +3,6 @@ class PagoModel {
     private $conn;
 
     public function __construct($conn) {
-        // Usamos la conexión proporcionada por el archivo db_config.php
         $this->conn = $conn;
     }
 

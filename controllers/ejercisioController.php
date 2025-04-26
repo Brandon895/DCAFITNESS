@@ -1,5 +1,4 @@
 <?php
-// Incluir el modelo
 require_once '../models/EjercisioModel.php';
 
 class EjercicioController {

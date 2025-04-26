@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Puedes agregar la lógica de PHP si necesitas aquí
+// lógica de PHP si se necesita
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ error_reporting(E_ALL);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes</title>
-    <!-- Agregar Bootstrap -->
+    <!-- Agregar aqui Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Estilo general del cuerpo */
@@ -155,7 +155,6 @@ error_reporting(E_ALL);
     </div>
 </div>
 
-<!-- Agregar Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

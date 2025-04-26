@@ -1,12 +1,9 @@
 <?php
-// Incluir el archivo de conexión a la base de datos
 include('../models/db.php');
 
-// Verificar si se ha pasado el parámetro idVenta por la URL
 if (isset($_GET['idVenta'])) {
     $idVenta = $_GET['idVenta'];
 
-    // Consultar los detalles de la venta a editar
     $sql = "SELECT idVenta, nom_producto, cantidad, precio_venta, total, fecha_venta FROM ventas_productos WHERE idVenta = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $idVenta);
@@ -27,7 +24,6 @@ if (isset($_GET['idVenta'])) {
     $precio_venta = $_POST['precio_venta'];
     $fecha_venta = $_POST['fecha_venta'];
 
-    // Consulta para actualizar la venta, eliminando la columna 'total' porque es calculada automáticamente
     $sql = "UPDATE ventas_productos SET nom_producto = ?, cantidad = ?, precio_venta = ?, fecha_venta = ? WHERE idVenta = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('siisi', $nom_producto, $cantidad, $precio_venta, $fecha_venta, $idVenta);
@@ -36,7 +32,7 @@ if (isset($_GET['idVenta'])) {
     if ($stmt->execute()) {
         // Redirigir a la página de ventas con mensaje de éxito
         header("Location: VistaVentaProducto.php?message=Venta actualizada con éxito");
-        exit(); // Aseguramos que el script no continúe ejecutándose
+        exit(); 
     } else {
         echo "Error al actualizar la venta: " . $conn->error;
     }
@@ -59,7 +55,7 @@ $conn->close();
     <style>
         /* Estilo general del cuerpo */
         body {
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Aquí pon la URL de la imagen de fondo */
+            background-image: url('https://via.placeholder.com/1920x1080'); 
             background-size: cover;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;

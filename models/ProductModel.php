@@ -3,7 +3,6 @@ class ProductModel {
     private $conn;
 
     public function __construct() {
-        // Usamos la conexión definida en el archivo de conexión
         $this->conn = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
 
         // Verificar la conexión

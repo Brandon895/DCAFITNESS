@@ -105,7 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="form-container">
         <h2><i class="fas fa-user-plus"></i> Agregar Nuevo Cliente</h2>
-        <form method="POST" action="AgregarCliente.php">
+        <form method="POST" action="agregar_cliente.php">
+
             <div class="mb-3">
                 <label class="form-label" for="cedula">Cédula</label>
                 <input type="text" id="cedula" name="cedula" class="form-control" required>

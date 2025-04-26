@@ -1,7 +1,5 @@
 <?php
-// Archivo: models/ProgresoFisicoModel.php
-
-require_once 'db.php';  // Si db.php está en la misma carpeta 'models'
+require_once 'db.php'; 
 
 
 class ProgresoFisicoModel {

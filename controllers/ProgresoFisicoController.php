@@ -1,7 +1,5 @@
 <?php
-// Archivo: controllers/ProgresoFisicoController.php
-
-require_once '../models/ProgresoFisicoModel.php';  // Incluir el modelo
+require_once '../models/ProgresoFisicoModel.php';  
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cedula'])) {
     $cedula = $_POST['cedula'];

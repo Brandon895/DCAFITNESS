@@ -1,5 +1,4 @@
 <?php
-// Incluir el controlador
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
 
 $productController = new ProductController();
@@ -34,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Producto</title>
-    <!-- Agregar Bootstrap y Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -104,13 +102,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* Estilo de los botones */
         .btn {
             font-weight: bold;
-            padding: 20px 60px; /* Tamaño más grande de los botones */
-            font-size: 18px; /* Tamaño de fuente más grande */
-            border-radius: 12px; /* Bordes redondeados */
-            transition: background-color 0.3s ease; /* Transición suave de color al pasar el cursor */
-            text-align: center; /* Centrado del texto en el botón */
-            display: inline-block; /* Permite que los botones estén en línea */
-            margin: 15px; /* Espaciado entre los botones */
+            padding: 20px 60px;
+            font-size: 18px; 
+            border-radius: 12px; 
+            transition: background-color 0.3s ease; 
+            text-align: center; 
+            display: inline-block; 
+            margin: 15px; 
         }
 
         /* Estilo del botón "Guardar Producto" */

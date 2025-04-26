@@ -1,16 +1,12 @@
 <?php
-// Incluir controlador que maneja la lógica de negocio
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ClienteController.php');
 
 $clienteController = new ClienteController();
 
-// Verificar si se ha enviado un parámetro de búsqueda
 $searchQuery = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 
-// Obtener los clientes filtrados si hay un término de búsqueda
-$clientes = $clienteController->buscarClientes($searchQuery); // Llamar a un método que filtra según el término de búsqueda
+$clientes = $clienteController->buscarClientes($searchQuery); 
 
-// Verificar si hay datos antes de imprimir la tabla
 if (empty($clientes)) {
     echo "No hay clientes registrados.";
 }
@@ -34,7 +30,7 @@ if (empty($clientes)) {
         }
 
         .container {
-            background: linear-gradient(45deg, #28a745, #ffc107); /* Colores verde y amarillo */
+            background: linear-gradient(45deg, #28a745, #ffc107); 
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
@@ -48,26 +44,26 @@ if (empty($clientes)) {
         }
 
         .table thead {
-            background-color: #28a745; /* Verde */
+            background-color: #28a745; 
             color: white;
             text-align: center;
             border-radius: 15px;
         }
 
         .table tbody tr:nth-of-type(odd) {
-            background-color: #e2f9e2; /* Verde claro */
+            background-color: #e2f9e2; 
         }
 
         .table tbody tr:nth-of-type(even) {
-            background-color: #fff; /* Blanco */
+            background-color: #fff; 
         }
 
         .table tbody tr:hover {
-            background-color: #d3f5d3; /* Verde más suave */
+            background-color: #d3f5d3; 
         }
 
         .btn-success {
-            background-color: #28a745; /* Verde */
+            background-color: #28a745; 
             border: none;
             border-radius: 10px;
             padding: 12px 25px;
@@ -82,7 +78,7 @@ if (empty($clientes)) {
         }
 
         .btn-danger {
-            background-color: #dc3545; /* Rojo */
+            background-color: #dc3545; 
             border: none;
             border-radius: 10px;
             padding: 12px 25px;
@@ -97,7 +93,7 @@ if (empty($clientes)) {
         }
 
         .btn-info {
-            background-color: #007bff; /* Azul */
+            background-color: #007bff; 
             border: none;
             border-radius: 10px;
             padding: 12px 25px;
@@ -113,7 +109,7 @@ if (empty($clientes)) {
 
         .btn-container {
             display: flex;
-            justify-content: space-between; /* Asegura que los botones estén separados */
+            justify-content: space-between; 
             margin-top: 20px;
         }
 
@@ -125,15 +121,15 @@ if (empty($clientes)) {
         .form-search input {
             width: 85%;
             padding: 10px;
-            border-radius: 10px; /* Bordes rectos */
+            border-radius: 10px; 
             font-size: 16px;
         }
 
         .form-search button {
             width: 12%;
             padding: 10px;
-            border-radius: 10px; /* Bordes rectos */
-            background-color: #ffc107; /* Amarillo */
+            border-radius: 10px; 
+            background-color: #ffc107; 
             color: white;
             border: none;
             font-size: 16px;

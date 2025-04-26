@@ -6,12 +6,11 @@
     <title>Progreso Físico</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Agregar Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #28a745, #ffc107); /* Verde y amarillo degradado */
+            background: linear-gradient(to right, #28a745, #ffc107); 
             color: white;
             text-align: center;
             margin: 0;
@@ -56,23 +55,23 @@
         }
 
         button[type="submit"] {
-            background: #ffc107; /* Amarillo */
+            background: #ffc107; 
             color: white;
             font-weight: bold;
         }
 
         button[type="submit"]:hover {
-            background: #ff9800; /* Amarillo más oscuro */
+            background: #ff9800; 
         }
 
         button[type="button"] {
-            background: #dc3545; /* Rojo */
+            background: #dc3545; 
             color: white;
             font-weight: bold;
         }
 
         button[type="button"]:hover {
-            background: #c82333; /* Rojo más oscuro */
+            background: #c82333; 
         }
 
         #resultados {
@@ -84,15 +83,14 @@
     </style>
 </head>
 <body>
-    <!-- Título con icono -->
     <h1><i class="fas fa-chart-line"></i> Progreso Físico</h1>
 
     <form id="formBusqueda" onsubmit="return false;">
         <label for="cedula"><i class="fas fa-id-card"></i> Cédula:</label>
         <input type="text" id="cedula" name="cedula" required>
-        <!-- Botón de búsqueda con icono -->
+        
         <button type="submit"><i class="fas fa-search"></i> Buscar</button>
-        <!-- Botón de cancelar con icono -->
+       
         <button type="button" onclick="window.location.href='dashboard.php'"><i class="fas fa-times-circle"></i> Cancelar</button>
     </form>
 

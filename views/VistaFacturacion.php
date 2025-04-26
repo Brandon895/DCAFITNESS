@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/db.php';
-require_once __DIR__ . '/../libs/tcpdf/tcpdf.php'; // Asegúrate de que la ruta sea correcta
+require_once __DIR__ . '/../libs/tcpdf/tcpdf.php'; 
 
 // Obtener las facturas de la base de datos
 $sql = "SELECT * FROM facturas";
@@ -67,10 +67,9 @@ if (isset($_GET['id_factura'])) {
     $pdf->Cell(100, 10, 'Total a Pagar', 0, 0, 'L');
     $pdf->Cell(40, 10, number_format($factura['total_a_pagar'], 2), 0, 1, 'C');
 
-    // Espacio entre la tabla y los detalles de pago
+    
     $pdf->Ln(10);
 
-    // Método de pago con un toque elegante
     $pdf->SetFont('helvetica', 'B', 12);
     $pdf->Cell(40, 10, 'Metodo de Pago:', 0, 0);
     $pdf->SetFont('helvetica', '', 12);
@@ -82,8 +81,8 @@ if (isset($_GET['id_factura'])) {
     $pdf->Cell(0, 10, 'Gracias por su compra en DCAFITNESS. Visite nuestro sitio web para más servicios.', 0, 1, 'C');
 
     // Salida del archivo PDF
-    $pdf->Output('Factura_'.$factura['id_factura'].'.pdf', 'D'); // 'D' para descargar el archivo
-    exit(); // Evitar que se siga cargando el resto de la vista
+    $pdf->Output('Factura_'.$factura['id_factura'].'.pdf', 'D'); 
+    exit(); 
 }
 ?>
 
@@ -94,10 +93,10 @@ if (isset($_GET['id_factura'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facturación - DCAFITNESS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> 
     <style>
         body {
-            background: linear-gradient(135deg, #00b140, #ffcc00); /* Degradado de verde a amarillo */
+            background: linear-gradient(135deg, #00b140, #ffcc00); 
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
         }
@@ -109,14 +108,14 @@ if (isset($_GET['id_factura'])) {
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de transparencia */
+            background: rgba(255, 255, 255, 0.9); 
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .btn-success {
-            background-color: #28a745; /* Verde más claro pero fuerte */
+            background-color: #28a745; 
             border-color: #218838;
         }
 
@@ -133,7 +132,7 @@ if (isset($_GET['id_factura'])) {
         }
 
         .btn-secondary {
-            background-color: #007bff; /* Azul para el botón de regresar */
+            background-color: #007bff; 
             color: white;
         }
 
@@ -141,7 +140,7 @@ if (isset($_GET['id_factura'])) {
             background-color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Diseño del botón "Crear Factura" más atractivo */
+        /* Diseño del botón "Crear Factura" */
         .btn-success {
             font-size: 1.2rem;
             padding: 10px 20px;
@@ -159,7 +158,7 @@ if (isset($_GET['id_factura'])) {
             vertical-align: middle;
         }
 
-        /* Añadir un toque más moderno a las celdas */
+        /* Añade un toque más moderno a las celdas */
         .table-dark th {
             background-color: #343a40;
             color: #fff;
@@ -195,7 +194,7 @@ if (isset($_GET['id_factura'])) {
                         <th><i class="fas fa-calculator"></i> Total IVA</th>
                         <th><i class="fas fa-dollar-sign"></i> Total a Pagar</th>
                         <th><i class="fas fa-credit-card"></i> Método de Pago</th>
-                        <th><i class="fas fa-cogs"></i> Acciones</th> <!-- Nueva columna para los botones de editar, eliminar y PDF -->
+                        <th><i class="fas fa-cogs"></i> Acciones</th> 
                     </tr>
                 </thead>
                 <tbody>

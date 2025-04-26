@@ -1,5 +1,4 @@
 <?php
-// Incluir TCPDF solo si se solicita el PDF
 if (isset($_GET['generar_pdf']) && $_GET['generar_pdf'] == 'true') {
     require_once('../libs/tcpdf/tcpdf.php');
 

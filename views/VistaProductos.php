@@ -1,12 +1,10 @@
 <?php
-// Obtener el término de búsqueda de la URL, si está presente
 $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 
-// Incluir controlador que maneja la lógica de negocio
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
 
 $productController = new ProductController();
-$productos = $productController->obtenerProductos($buscar); // Usar el término de búsqueda
+$productos = $productController->obtenerProductos($buscar); 
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@ $productos = $productController->obtenerProductos($buscar); // Usar el término 
     <title>Productos</title>
     <!-- Agregar Bootstrap y Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> 
     <style>
         body {
             background: url('../assets/img/imgdcafitness.jpg') no-repeat center center fixed;
@@ -41,21 +39,21 @@ $productos = $productController->obtenerProductos($buscar); // Usar el término 
         }
 
         .table thead {
-            background-color: #28a745; /* Verde */
+            background-color: #28a745; 
             color: white;
             border-radius: 10px;
         }
 
         .table tbody tr:nth-of-type(odd) {
-            background-color: #e2f9e2; /* Verde claro */
+            background-color: #e2f9e2; 
         }
 
         .table tbody tr:nth-of-type(even) {
-            background-color: #fff; /* Blanco */
+            background-color: #fff; 
         }
 
         .table tbody tr:hover {
-            background-color: #d3f5d3; /* Verde más suave al pasar el ratón */
+            background-color: #d3f5d3; 
         }
 
         .btn-success {
@@ -87,7 +85,7 @@ $productos = $productController->obtenerProductos($buscar); // Usar el término 
         }
 
         .btn-sm {
-            padding: 10px 20px; /* Aumenté el tamaño del botón */
+            padding: 10px 20px; 
         }
 
         h2, h5 {
@@ -127,8 +125,8 @@ $productos = $productController->obtenerProductos($buscar); // Usar el término 
         }
 
         .btn-container .btn {
-            width: 140px; /* Aumenté el ancho del botón */
-            font-size: 16px; /* Aumenté el tamaño de la fuente */
+            width: 140px; 
+            font-size: 16px; 
         }
 
         .btn i {
@@ -149,13 +147,13 @@ $productos = $productController->obtenerProductos($buscar); // Usar el término 
         }
 
         .btn-warning {
-            color: white; /* Cambié el color del texto del botón de editar a blanco */
+            color: white; 
             border: none;
-            border-radius: 10px; /* Asegúrate de que el borde sea redondeado como el de eliminar */
+            border-radius: 10px; 
             
         }
         .btn-warning:hover {
-            color: white; /* Cambié el color del texto a negro para hacerlo legible */
+            color: white; 
             transform: scale(1.05);
         }
     </style>

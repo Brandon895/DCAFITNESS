@@ -1,22 +1,16 @@
 <?php
-require_once '../controllers/RutinaController.php'; // Asegúrate de la ruta correcta al controlador
+require_once '../controllers/RutinaController.php'; 
 
-// Instanciamos el controlador
 $controller = new RutinaController();
 
-// Verificamos si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recuperamos la cédula del cliente
     $cedula = $_POST['cedula'];
 
-    // Llamamos al método para verificar si el cliente está inscrito
     $clienteInscrito = $controller->verificarClienteInscrito($cedula);
 
     if ($clienteInscrito) {
-        // Si el cliente está inscrito, procedemos a guardar la rutina
         $controller->guardarRutina();
     } else {
-        // Si el cliente no está inscrito, mostramos un mensaje de error
         $mensajeError = "El cliente con cédula $cedula no está inscrito.";
     }
 }
@@ -28,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Rutina</title>
-    <!-- Vinculamos Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilo general del cuerpo */
@@ -46,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         /* Contenedor principal */
         .container {
             max-width: 700px;
-            width: 100%; /* Asegura que el contenedor ocupe todo el espacio necesario */
+            width: 100%;
         }
 
         /* Estilo de la tarjeta */
@@ -86,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             box-shadow: none;
             padding: 12px;
             margin-bottom: 20px;
-            width: 100%; /* Asegura que el campo de formulario ocupe el ancho completo */
+            width: 100%; 
         }
 
         .form-control:focus {
@@ -102,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 10px;
             transition: background-color 0.3s ease, transform 0.2s ease-in-out;
             text-align: center;
-            margin-right: 10px; /* Espacio entre los botones */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            margin-right: 10px; 
+            cursor: pointer; 
         }
 
         /* Estilo del botón "Guardar cambios" */
@@ -121,25 +114,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .btn-custom:hover {
             background-color: #34c34f;
             color: black;
-            transform: scale(1.05); /* Efecto de expansión */
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Sombra */
+            transform: scale(1.05); 
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); 
         }
 
         /* Estilo del botón "Volver a la lista de Rutinas" */
         .btn-cancel {
-            background-color: #3498db; /* Azul */
+            background-color: #3498db; 
             color: white;
             display: inline-block;
             width: auto;
             text-decoration: none;
         }
 
-        /* Hover para el botón "Volver a la lista" */
         .btn-cancel:hover {
             background-color: #2980b9;
             color: black;
-            transform: scale(1.05); /* Efecto de expansión */
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Sombra */
+            transform: scale(1.05); 
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); 
         }
 
         /* Animación de entrada para la tarjeta */

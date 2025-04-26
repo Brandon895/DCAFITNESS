@@ -4,10 +4,8 @@ class MedidasModel {
     private $conn;
 
     public function __construct() {
-        // Habilitar reportes de error en MySQLi
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         
-        // Definir conexión a la base de datos
         $this->conn = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
 
         // Verificar conexión

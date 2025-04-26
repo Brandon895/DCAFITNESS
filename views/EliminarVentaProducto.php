@@ -1,8 +1,7 @@
 <?php
-// Incluir el archivo de conexión
-include('../models/db.php');  // Asegúrate de que la ruta sea correcta
+include('../models/db.php');  
 include('../controllers/VentaProductoController.php');
-require_once '../helpers/BitacoraHelper.php'; // Incluir el helper para registrar en la bitácora
+require_once '../helpers/BitacoraHelper.php'; 
 
 // Instancia del controlador
 $ventaController = new VentaProductoController();
@@ -14,8 +13,8 @@ if (isset($_GET['idVenta'])) {
     // Llamar al controlador para eliminar la venta
     if ($ventaController->eliminarVenta($idVenta)) {
         // Registrar el movimiento en la bitácora
-        $usuario = "Usuario"; // Aquí deberías poner el nombre del usuario logueado
-        $accion = "Eliminó la venta con ID: $idVenta"; // Acción a registrar
+        $usuario = "Usuario"; 
+        $accion = "Eliminó la venta con ID: $idVenta"; 
         BitacoraHelper::registrarEnBitacora("Se eliminó una venta de producto");
 
         // Redirigir a la vista de ventas con un mensaje de éxito

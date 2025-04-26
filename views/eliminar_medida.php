@@ -1,5 +1,4 @@
 <?php
-// Incluir el controlador
 include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/MedidasController.php');
 
 $medidasController = new MedidasController();

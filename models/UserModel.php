@@ -1,6 +1,5 @@
 <?php
-include('db.php'); // Incluimos la conexión a la base de datos
-
+include('db.php'); 
 class UserModel {
     
     // Método para verificar el login del usuario

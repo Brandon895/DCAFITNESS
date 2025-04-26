@@ -1,8 +1,6 @@
 <?php
-// Incluir el controlador
 require_once '../controllers/EjercisioController.php';
 
-// Crear una instancia del controlador
 $controller = new EjercicioController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

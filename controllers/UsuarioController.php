@@ -23,5 +23,5 @@ class UsuarioController {
         return UsuarioModel::obtenerUsuarios();
     }
 }
-?>
+
 

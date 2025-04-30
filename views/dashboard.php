@@ -1,5 +1,5 @@
 <?php
-include('/var/www/html/DCAFITNESS/controllers/dashboardcontroller.php');
+include_once(__DIR__ . '/../controllers/dashboardcontroller.php');
 
 include __DIR__ . '/../controllers/ClienteController.php';
 

@@ -1,7 +1,6 @@
 <?php
 //include __DIR__ . '/../controllers/DashboardController.php';
-include(../controllers/DashboardController.php');
-
+include('../controllers/DashboardController.php');
 
 include __DIR__ . '/../controllers/ClienteController.php';
 

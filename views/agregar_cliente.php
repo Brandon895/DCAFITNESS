@@ -18,17 +18,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'fecha_vencimiento'  => $_POST['fecha_vencimiento']
     ];
 
-    // Verificar que los datos son correctos
-    $resultado = $clienteController->agregarCliente($data);
-
-    if ($resultado) {
-        // Redirigir al listado de clientes con mensaje de éxito
-        header("Location: Clientes.php?mensaje=Cliente agregado correctamente");
-        exit();
+    // Verificar si los datos son válidos
+    if (empty($data['cedula']) || empty($data['nombre'])) {
+        $mensaje = "Por favor, complete todos los campos obligatorios.";
     } else {
-        // Redirigir al listado de clientes con mensaje de error
-        header("Location: Clientes.php?mensaje=Error al agregar cliente");
-        exit();
+        // Intentar guardar el cliente
+        $resultado = $clienteController->agregarCliente($data);
+
+        if ($resultado) {
+            // Si se guarda correctamente, redirigir
+            header("Location: clientes.php?mensaje=Cliente agregado correctamente");
+            exit();
+        } else {
+            // Si hubo un error en la base de datos
+            $mensaje = "Error al guardar cliente. Por favor, inténtelo de nuevo.";
+        }
     }
 }
 ?>
@@ -55,12 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-width: 700px;
             margin: 80px auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
@@ -80,9 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
             padding: 10px 25px;
         }
-        .btn-primary:hover {
-            background-color: #218838;
-        }
 
         .btn-danger {
             background-color: rgb(232, 13, 13);
@@ -90,10 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #fff;
             font-size: 18px;
             padding: 10px 25px;
-        }
-        .btn-danger:hover {
-            background-color: rgb(243, 24, 24);
-            color: #fff;
         }
 
         .button-group {
@@ -107,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="form-container">
         <h2><i class="fas fa-user-plus"></i> Agregar Nuevo Cliente</h2>
+        <?php if (isset($mensaje)) { echo '<div class="alert alert-danger">' . $mensaje . '</div>'; } ?>
         <form method="POST" action="agregar_cliente.php">
-
             <div class="mb-3">
                 <label class="form-label" for="cedula">Cédula</label>
                 <input type="text" id="cedula" name="cedula" class="form-control" required>
@@ -156,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Guardar Cliente
                 </button>
-                <a href="Clientes.php" class="btn btn-danger">
+                <a href="clientes.php" class="btn btn-danger">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
             </div>

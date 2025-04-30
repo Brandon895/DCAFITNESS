@@ -13,7 +13,7 @@ $total_clientes = $clienteController->obtenerClientes();
 $dashboard = new DashboardController();
 $dashboard->verificarSesion();
 $rol = $dashboard->obtenerRol();
-$usuario = ($rol == 'administrador') ? 'Administrador' : 'Entrenador'; 
+$usuario = ($rol == 'admin') ? 'Admin' : 'Entrenador'; 
 ?>
 
 <!DOCTYPE html>
@@ -246,19 +246,19 @@ $usuario = ($rol == 'administrador') ? 'Administrador' : 'Entrenador';
     <div class="row">
     <nav class="sidebar">    
     <a href="#"><i class="fas fa-home"></i> Inicio</a>
-    <?php if ($rol == 'administrador'): ?>
+    <?php if ($rol == 'admin'): ?>
         <a href="vistaUsuarios.php"><i class="fas fa-users"></i> Gestión de Usuarios</a>
         <a href="Vista_Reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a>
         <a href="VistaProductos.php"><i class="fas fa-box"></i> Productos</a>
     <?php endif; ?>
-    <?php if ($rol == 'entrenador' || $rol == 'administrador'): ?>
+    <?php if ($rol == 'entrenador' || $rol == 'admin'): ?>
         <a href="VistaProgresoFisico.php"><i class="fas fa-running"></i> Progreso Físico</a>
         <a href="Clientes.php"><i class="fas fa-user"></i> Clientes</a>
         <a href="VistaRutinas.php"><i class="fas fa-dumbbell"></i> Rutinas</a>
         <a href="VistaMedidas.php"><i class="fas fa-ruler"></i> Medidas</a>
     <?php endif; ?>
 
-    <?php if ($rol == 'administrador'): ?>
+    <?php if ($rol == 'admin'): ?>
         <a href="Vistarealizar_pago.php"><i class="fas fa-file-invoice"></i>Pagos</a>
         <a href="VistaFacturacion.php"><i class="fas fa-file-invoice"></i> Facturacion</a>
         <a href="VistaVentaProducto.php"><i class="fa-solid fa-boxes-stacked"></i> Ventas de Productos</a>

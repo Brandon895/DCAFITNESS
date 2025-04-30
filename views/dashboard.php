@@ -1,7 +1,7 @@
 <?php
-include '../controllers/DashboardController.php';
+include __DIR__ . '/../controllers/DashboardController.php';
+include __DIR__ . '/../controllers/ClienteController.php';
 
-include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ClienteController.php');
 
 $clienteController = new ClienteController();
 

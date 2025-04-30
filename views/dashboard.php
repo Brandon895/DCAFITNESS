@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . '/../controllers/DashboardController.php';
+include '/var/www/html/Proyecto/controllers/DashboardController.php';
+
 
 
 include __DIR__ . '/../controllers/ClienteController.php';

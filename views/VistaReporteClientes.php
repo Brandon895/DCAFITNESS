@@ -3,6 +3,7 @@ if (isset($_GET['generar_pdf']) && $_GET['generar_pdf'] == 'true') {
     //require_once('../libs/tcpdf/tcpdf.php');
 require_once(__DIR__ . '/../libs/tcpdf/tcpdf.php');
 
+
     // Crear un nuevo documento PDF
     $pdf = new TCPDF();
     $pdf->SetAutoPageBreak(TRUE, 10);

@@ -19,22 +19,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    // Verifica si el usuario existe y la contraseña es correcta
-    if ($user && password_verify($password, $user['contrasena'])) {
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['usuario'] = $user['nombreusuario'];
-        $_SESSION['rol'] = $user['rol'];
-
-        // Registra el acceso en la bitácora
-        BitacoraAccesosModel::registrarAcceso($_SESSION['id'], $_SESSION['usuario'], "Inicio de sesión");
-
-        // Redirige al dashboard
-        header("Location: ../views/dashboard.php");
-        exit();
+    // Debug: Verifica si encontró el usuario y si la contraseña es válida
+    if ($user) {
+        if (password_verify($password, $user['contrasena'])) {
+            echo "✅ Contraseña correcta para el usuario: " . htmlspecialchars($user['nombreusuario']);
+            // Elimina este exit cuando confirmes que funciona
+            exit();
+        } else {
+            echo "❌ Contraseña incorrecta para el usuario: " . htmlspecialchars($user['nombreusuario']);
+            exit();
+        }
     } else {
-        // Redirige al login con un mensaje de error
-        header("Location: ../views/loguin.php?error=Usuario o contraseña incorrectos");
+        echo "❌ Usuario no encontrado.";
         exit();
     }
+
+    // Código real que solo se ejecutará cuando estés seguro de que funciona
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['usuario'] = $user['nombreusuario'];
+    $_SESSION['rol'] = $user['rol'];
+
+    BitacoraAccesosModel::registrarAcceso($_SESSION['id'], $_SESSION['usuario'], "Inicio de sesión");
+
+    header("Location: ../views/dashboard.php");
+    exit();
 }
 ?>

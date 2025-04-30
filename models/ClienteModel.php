@@ -3,10 +3,15 @@ class ClienteModel {
     private $conn;
 
     public function __construct() {
-        $this->conn = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
+        $host = "sql3.freesqldatabase.com";
+        $user = "sql3776084";
+        $password = "vqri3ry8GD"; // Usa aquí tu contraseña real
+        $dbname = "sql3776084";
+
+        $this->conn = new mysqli($host, $user, $password, $dbname, 3306);
 
         if ($this->conn->connect_error) {
-            die("Conexión fallida: " . $this->conn->connect_error);
+            die("Error de conexión a la base de datos: " . $this->conn->connect_error);
         }
     }
 
@@ -36,7 +41,7 @@ class ClienteModel {
         $stmt->bind_param("i", $id_cliente);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();  // Devuelve un solo cliente por ID
+        return $result->fetch_assoc();
     }
 
     // ✅ Actualizar cliente
@@ -73,7 +78,7 @@ class ClienteModel {
         return $stmt->execute();
     }
 
-    // ✅ Insertar nuevo cliente (con validación de estado_membresia)
+    // ✅ Insertar nuevo cliente
     public function insertarCliente($data) {
         $estados_permitidos = ["activo", "inactivo", "expirado"];
         $estado_membresia = in_array($data['estado_membresia'], $estados_permitidos) ? $data['estado_membresia'] : "activo";
@@ -98,22 +103,17 @@ class ClienteModel {
 
         return $stmt->execute();
     }
+
     public function registrarPago($id_cliente, $monto, $metodo_pago, $descripcion) {
-        $fecha_pago = date("Y-m-d H:i:s"); // Obtener la fecha y hora actual
-        
-        // Insertar el pago en la base de datos
+        $fecha_pago = date("Y-m-d H:i:s");
+
         $sql = "INSERT INTO pagos (id_cliente, monto, metodo_pago, descripcion, fecha_pago) 
                 VALUES (?, ?, ?, ?, ?)";
         
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("iisss", $id_cliente, $monto, $metodo_pago, $descripcion, $fecha_pago);
 
-        // Ejecutar la consulta y verificar si fue exitosa
-        if ($stmt->execute()) {
-            return true; // Pago registrado exitosamente
-        } else {
-            return false; // Error al registrar el pago
-        }
+        return $stmt->execute();
     }
 
     // ✅ Verificar membresía
@@ -138,7 +138,7 @@ class ClienteModel {
         return ["status" => "permitido", "mensaje" => "Bienvenido, $nombre"];
     }
 
-    // ✅ Registrar acceso del cliente
+    // ✅ Registrar acceso
     public function registrarAcceso($cedula) {
         $estado = $this->verificarMembresia($cedula);
         if ($estado['status'] !== "permitido") {
@@ -161,7 +161,7 @@ class ClienteModel {
         $sql = "INSERT INTO accesos (id_cliente, fecha_hora_entrada) VALUES (?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("is", $id_cliente, $fecha_hora_entrada);
-        
+
         if ($stmt->execute()) {
             return ["status" => "exito", "mensaje" => $estado['mensaje']];
         } else {
@@ -169,41 +169,26 @@ class ClienteModel {
         }
     }
 
-    // ✅ Eliminar cliente (y pagos asociados)
+    // ✅ Eliminar cliente y pagos
     public function eliminarCliente($id_cliente) {
-        // 1. Eliminar los pagos relacionados con el cliente
         $sqlPagos = "DELETE FROM pagos WHERE id_cliente = ?";
         $stmtPagos = $this->conn->prepare($sqlPagos);
         $stmtPagos->bind_param("i", $id_cliente);
         $stmtPagos->execute();
 
-        // Verificar si se eliminaron los pagos correctamente
-        if ($stmtPagos->affected_rows > 0) {
-            // Eliminación exitosa
-        } else {
-            // No se encontraron pagos relacionados para eliminar
-        }
-
-        // 2. Eliminar el cliente de la tabla clientes
         $sqlCliente = "DELETE FROM clientes WHERE id_cliente = ?";
         $stmtCliente = $this->conn->prepare($sqlCliente);
         $stmtCliente->bind_param("i", $id_cliente);
         $stmtCliente->execute();
 
-        // Verificar si el cliente fue eliminado
-        if ($stmtCliente->affected_rows > 0) {
-            // Cliente eliminado correctamente
-            return true;
-        } else {
-            // Si no se pudo eliminar el cliente
-            return false;
-        }
+        return $stmtCliente->affected_rows > 0;
     }
-    // ✅ Buscar clientes por nombre (o parte del nombre)
+
+    // ✅ Buscar clientes
     public function buscarClientes($nombre) {
         $sql = "SELECT * FROM clientes WHERE nombre LIKE ?";
         $stmt = $this->conn->prepare($sql);
-        $busqueda = "%" . $nombre . "%";  // Buscar por parte del nombre
+        $busqueda = "%" . $nombre . "%";
         $stmt->bind_param("s", $busqueda);
         $stmt->execute();
         $result = $stmt->get_result();

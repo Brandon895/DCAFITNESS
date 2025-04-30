@@ -57,6 +57,7 @@ class ClienteModel {
     }
 
     public function insertarCliente($data) {
+        // Validación del estado de membresía
         $estado_membresia = in_array($data['estado_membresia'], ["activo", "inactivo", "expirado"]) 
                             ? $data['estado_membresia'] : "activo";
 
@@ -64,12 +65,25 @@ class ClienteModel {
                 (cedula, nombre, apellidos, direccion, telefono, correo_electronico, 
                  fecha_nacimiento, estado_membresia, tipo_membresia, fecha_vencimiento) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         $stmt = $this->conn->prepare($sql);
+
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->conn->error); // Si no puede preparar la consulta
+        }
+
         $stmt->bind_param("ssssssssss", 
             $data['cedula'], $data['nombre'], $data['apellidos'], $data['direccion'], 
             $data['telefono'], $data['correo_electronico'], $data['fecha_nacimiento'], 
             $estado_membresia, $data['tipo_membresia'], $data['fecha_vencimiento']);
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            return true; // Inserción exitosa
+        } else {
+            // Mostrar el error detallado
+            error_log("Error al ejecutar la consulta: " . $stmt->error); // Registra el error en el log
+            return false; // Inserción fallida
+        }
     }
 
     public function registrarPago($id_cliente, $monto, $metodo_pago, $descripcion) {
@@ -155,4 +169,5 @@ class ClienteModel {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
+
 ?>

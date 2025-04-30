@@ -193,7 +193,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn btn-success">
                     <i class="fas fa-save"></i> Guardar Producto
                 </button>
-                <a href="vistaproductos.php" class="btn btn-secondary">
+                <a href="VistaProductos.php" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
             </form>

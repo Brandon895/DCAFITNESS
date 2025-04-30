@@ -20,11 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = $clienteController->agregarCliente($data);
 
     if ($resultado) {
-        echo "<script>alert('Cliente agregado correctamente');</script>";
-        header("Location: clientes.php");
+        // Redirigir sin imprimir nada antes
+        header("Location: clientes.php?mensaje=Cliente agregado correctamente");
         exit(); // Asegura que no se ejecute código adicional después de la redirección
     } else {
-        echo "<script>alert('Error al agregar cliente');</script>";
+        header("Location: clientes.php?mensaje=Error al agregar cliente");
+        exit();
     }
 }
 ?>
@@ -35,12 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Agregar Nuevo Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
-      rel="stylesheet">
-    <link 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-      rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, rgb(44, 241, 9), rgb(247, 251, 21));

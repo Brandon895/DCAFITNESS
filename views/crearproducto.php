@@ -1,6 +1,6 @@
 <?php
-//include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
-include('../controllers/ProductController.php');
+// Asegúrate de que la ruta al controlador sea correcta
+include('../controllers/ProductController.php'); // Asegúrate de que esta ruta sea correcta
 
 $productController = new ProductController();
 

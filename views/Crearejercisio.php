@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/EjercicioController.php';
+require_once '../controllers/ejercisioController.php';
 
 $controller = new EjercicioController();
 

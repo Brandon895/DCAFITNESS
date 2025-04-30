@@ -1,5 +1,6 @@
 <?php
-require_once '../models/ejercisioModel.php';
+//require_once '../models/ejercisioModel.php';
+require_once '../models/EjercisioModel.php';
 
 class EjercicioController {
 

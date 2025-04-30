@@ -4,6 +4,7 @@ require_once '../controllers/ClienteController.php';
 $clienteController = new ClienteController();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recibir y sanitizar los datos del formulario
     $data = [
         'cedula'             => $_POST['cedula'],
         'nombre'             => $_POST['nombre'],
@@ -17,13 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'fecha_vencimiento'  => $_POST['fecha_vencimiento']
     ];
 
+    // Verificar que los datos son correctos
     $resultado = $clienteController->agregarCliente($data);
 
     if ($resultado) {
-        // Redirigir sin imprimir nada antes
+        // Redirigir al listado de clientes con mensaje de éxito
         header("Location: clientes.php?mensaje=Cliente agregado correctamente");
-        exit(); // Asegura que no se ejecute código adicional después de la redirección
+        exit();
     } else {
+        // Redirigir al listado de clientes con mensaje de error
         header("Location: clientes.php?mensaje=Error al agregar cliente");
         exit();
     }

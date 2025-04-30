@@ -1,9 +1,11 @@
 <?php
+require_once __DIR__ . '/db.php'; // Ajusta la ruta según la ubicación de db.php dentro de models
+
 class DashboardModel {
     private $conexion;
 
     public function __construct() {
-        require_once __DIR__ . '/../db.php'; // Ajusta esta ruta si db.php está en otro lugar
+        global $conn; // Usa la conexión definida en db.php
         $this->conexion = $conn;
 
         if ($this->conexion->connect_error) {
@@ -14,7 +16,7 @@ class DashboardModel {
     public function obtenerDatosDashboard() {
         $sql = "SELECT COUNT(*) AS total_clientes FROM clientes";
         $resultado = $this->conexion->query($sql);
-    
+
         if ($resultado && $resultado->num_rows > 0) {
             $row = $resultado->fetch_assoc();
             return (int)$row['total_clientes'];
@@ -27,7 +29,7 @@ class DashboardModel {
         $sql = "SELECT * FROM estadisticas";
         $resultado = $this->conexion->query($sql);
 
-        if ($resultado && $resultado->num_rows > 0) {
+        if ($resultado->num_rows > 0) {
             return $resultado->fetch_all(MYSQLI_ASSOC);
         } else {
             return [];
@@ -47,7 +49,7 @@ class DashboardModel {
     }
 
     public function __destruct() {
-        if ($this->conexion instanceof mysqli && $this->conexion->ping()) {
+        if ($this->conexion) {
             $this->conexion->close();
         }
     }

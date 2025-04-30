@@ -8,9 +8,9 @@ $servername = $components['host'];
 $username   = $components['user'];
 $password   = $components['pass'];
 $database   = ltrim($components['path'], '/');
-$port       = $components['port']; // Railway usa un puerto específico
+$port       = $components['port'];
 
-// Crear la conexión usando mysqli
+// Crear la conexión usando las variables correctas
 $conn = new mysqli($servername, $username, $password, $database, $port);
 
 // Verificar la conexión

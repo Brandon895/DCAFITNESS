@@ -1,5 +1,7 @@
 <?php
-require_once('C:/laragon/www/mi_gimnasio/DCAFITNESS/Proyecto/models/db.php');
+//require_once('C:/laragon/www/mi_gimnasio/DCAFITNESS/Proyecto/models/db.php');
+
+require_once('/var/www/html/models/db.php');  // Ruta completa en el servidor
 
 class UsuarioModel {
 

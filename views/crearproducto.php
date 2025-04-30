@@ -19,8 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Todos los campos obligatorios deben ser completados.');</script>";
     } else {
         // Insertar en la base de datos
-        if ($productController->crearProducto($nom_producto, $tipo, $marca, $cantidad_disponible, $precio_venta, $fecha_ingreso, $descripcion)) {
-            echo "<script>alert('Producto agregado exitosamente'); window.location.href='vistaproductos.php';</script>";
+        $insertado = $productController->crearProducto($nom_producto, $tipo, $marca, $cantidad_disponible, $precio_venta, $fecha_ingreso, $descripcion);
+
+        if ($insertado) {
+            echo "<script>alert('Producto agregado exitosamente'); window.location.href='VistaProductos.php';</script>";
         } else {
             echo "<script>alert('Error al agregar el producto');</script>";
         }

@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/EjercisioController.php';
+require_once '../controllers/EjercicioController.php';
 
 $controller = new EjercicioController();
 
@@ -125,7 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border: 1px solid #ddd;
         }
 
-        /* Botones */
         .btn {
             font-weight: bold;
             border: none;

@@ -1,4 +1,4 @@
-<?php
+<?php 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -230,6 +230,7 @@ $rutinas = $controller->listarRutinas();
         </table>
 
         <div class="btn-container">
+            <!-- Botón para crear rutina redirigiendo al formulario -->
             <a href="Crearrutina.php">
                 <button class="btn-success"><i class="fas fa-plus-circle"></i> Crear Nueva Rutina</button>
             </a>

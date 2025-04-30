@@ -1,7 +1,7 @@
 <?php
 require_once '../controllers/ProductController.php';
-require_once('../libs/tcpdf/tcpdf.php');
-
+//require_once('../libs/tcpdf/tcpdf.php');
+require_once('../libs/TCPDF/tcpdf.php');
 $controller = new ProductController();
 
 $productos = $controller->obtenerProductos();

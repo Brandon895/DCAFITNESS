@@ -23,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($resultado) {
         // Redirigir al listado de clientes con mensaje de éxito
-        header("Location: clientes.php?mensaje=Cliente agregado correctamente");
+        header("Location: Clientes.php?mensaje=Cliente agregado correctamente");
         exit();
     } else {
         // Redirigir al listado de clientes con mensaje de error
-        header("Location: clientes.php?mensaje=Error al agregar cliente");
+        header("Location: Clientes.php?mensaje=Error al agregar cliente");
         exit();
     }
 }
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Guardar Cliente
                 </button>
-                <a href="clientes.php" class="btn btn-danger">
+                <a href="Clientes.php" class="btn btn-danger">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
             </div>

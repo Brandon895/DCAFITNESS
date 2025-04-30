@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once '../models/db.php';
-require_once __DIR__ . '/../libs/tcpdf/tcpdf.php'; // Ruta a TCPDF
+require_once __DIR__ . '/../libs/TCPDF/tcpdf.php'; // Ruta a TCPDF
 
 // Determinar la cédula desde POST (búsqueda) o GET (PDF)
 $cedula = '';

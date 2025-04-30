@@ -34,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Contraseña incorrecta
-            header("Location: ../views/login.php?error=contraseña_incorrecta");
+            header("Location: ../views/loguin.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // Usuario no encontrado
-        header("Location: ../views/login.php?error=usuario_no_encontrado");
+        header("Location: ../views/loguin.php?error=usuario_no_encontrado");
         exit();
     }
 }

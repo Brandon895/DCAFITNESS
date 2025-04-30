@@ -7,8 +7,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Consulta preparada
     $sql = "SELECT id, nombreusuario, contrasena, rol FROM usuarios WHERE nombreusuario = ?";
     $stmt = $conn->prepare($sql);
+
+    // Verificar si la preparación fue exitosa
+    if (!$stmt) {
+        die("Error al preparar la consulta: " . $conn->error);
+    }
+
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -26,9 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../views/dashboard.php");
         exit();
     } else {
-        // Redirección con mensaje de error
         header("Location: ../views/loguin.php?error=Usuario o contraseña incorrectos");
         exit();
     }
 }
 ?>
+

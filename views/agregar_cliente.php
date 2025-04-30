@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = $clienteController->agregarCliente($data);
 
         if ($resultado) {
-            // Si se guarda correctamente, redirigir
+            // Si se guarda correctamente, redirigir a clientes.php
             header("Location: clientes.php?mensaje=Cliente agregado correctamente");
             exit();  // Detener la ejecución del script para asegurar la redirección
         } else {

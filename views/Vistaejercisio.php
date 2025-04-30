@@ -4,8 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once '../models/db.php';
-//require_once __DIR__ . '/../libs/tcpdf/tcpdf.php'; // Ruta a TCPDF
-require_once(__DIR__ . '/../libs/TCPDF/tcpdf.php');
+require_once __DIR__ . '/../libs/tcpdf/tcpdf.php'; // Ruta a TCPDF
 
 // Determinar la cédula desde POST (búsqueda) o GET (PDF)
 $cedula = '';
@@ -82,7 +81,7 @@ if (isset($_GET['descargar_pdf']) && !empty($cedula)) {
         foreach ($diasOrdenados as $dia) {
             if (!isset($datos[$dia])) continue;
             $d = $datos[$dia];
-            $html .= '<tr>'
+            $html .= '<tr>' 
                 . "<td>{$dia}</td>"
                 . '<td>' . htmlspecialchars($d['musculo'] ?? '-') . '</td>'
                 . '<td>' . htmlspecialchars($d['ejercicio'] ?? '-') . '</td>'
@@ -133,7 +132,6 @@ if (!empty($cedula) && isset($_POST['cedulaBuscar'])) {
         th { background:rgba(255,255,255,0.9); font-weight:bold; }
         h3 { margin-top:10px; display:flex; align-items:center; justify-content:center; }
         h3 i { margin-right:8px; }
-        
     </style>
 </head>
 <body>
@@ -172,13 +170,15 @@ if (!empty($cedula) && isset($_POST['cedulaBuscar'])) {
             <?php endforeach; endforeach; ?>
             </tbody>
         </table>
-        <div style="margin-top:20px;">
-            <a href="Crearejercisio.php" class="btn btn-verde"><i class="fas fa-plus-circle"></i> Crear Nuevo Ejercicio</a>
-            <a href="vistarutinas.php" class="btn btn-azul"><i class="fas fa-arrow-left"></i> Volver a Vista Rutinas</a>
-            <a href="?descargar_pdf=1&cedula=<?= urlencode($cedula) ?>" class="btn btn-rojo"><i class="fas fa-download"></i> Descargar PDF</a>
-        </div>
     <?php elseif (!empty($cedula)): ?>
         <p>No se encontraron ejercicios para esta cédula.</p>
     <?php endif; ?>
+
+    <!-- Botones siempre visibles -->
+    <div style="margin-top:20px;">
+        <a href="Crearejercisio.php?cedula=<?= urlencode($cedula) ?>" class="btn btn-verde"><i class="fas fa-plus-circle"></i> Crear Nuevo Ejercicio</a>
+        <a href="vistarutinas.php" class="btn btn-azul"><i class="fas fa-arrow-left"></i> Volver a Vista Rutinas</a>
+        <a href="?descargar_pdf=1&cedula=<?= urlencode($cedula) ?>" class="btn btn-rojo"><i class="fas fa-download"></i> Descargar PDF</a>
+    </div>
 </body>
 </html>

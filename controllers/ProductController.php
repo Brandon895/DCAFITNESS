@@ -14,40 +14,38 @@ include_once $productModelPath;
 
 class ProductController {
 
-    // Obtener todos los productos
     public function obtenerProductos($buscar = '') {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
-    
-        // Si se pasa un término de búsqueda, usar la función de búsqueda
+
         if (!empty($buscar)) {
             return $this->buscarProducto($buscar);
         } else {
-            $sql = "SELECT * FROM Productos";
+            $sql = "SELECT * FROM productos";
             $resultado = $conn->query($sql);
-    
+
             $productos = [];
             if ($resultado && $resultado->num_rows > 0) {
                 while ($row = $resultado->fetch_assoc()) {
                     $productos[] = $row;
                 }
             }
-    
+
             return $productos;
         }
     }
-    
 
-    // Obtener un producto por su ID
     public function obtenerProductoPorId($idProducto) {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
 
-        $sql = "SELECT * FROM Productos WHERE idProducto = ?";
+        $sql = "SELECT * FROM productos WHERE idProducto = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $idProducto);
         $stmt->execute();
@@ -55,23 +53,20 @@ class ProductController {
 
         return $resultado->fetch_assoc();
     }
-    
 
-    // Crear un nuevo producto
     public function crearProducto($nom_producto, $tipo, $marca, $cantidad_disponible, $precio_venta, $fecha_ingreso, $descripcion) {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
 
-        // Validar y formatear la fecha de ingreso
         $fecha = DateTime::createFromFormat('Y-m-d', $fecha_ingreso);
         if (!$fecha || $fecha->format('Y-m-d') !== $fecha_ingreso) {
             die("Error: La fecha de ingreso no tiene un formato válido (YYYY-MM-DD).");
         }
         $fecha_formateada = $fecha->format('Y-m-d');
 
-        // Verificar si el producto ya existe
         $sqlVerificar = "SELECT idProducto FROM productos WHERE nom_producto = ?";
         $stmtVerificar = $conn->prepare($sqlVerificar);
         $stmtVerificar->bind_param('s', $nom_producto);
@@ -87,7 +82,7 @@ class ProductController {
             $sql = "INSERT INTO productos (nom_producto, tipo, marca, cantidad_disponible, precio_venta, fecha_ingreso, descripcion) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssdisi', $nom_producto, $tipo, $marca, $cantidad_disponible, $precio_venta, $fecha_formateada, $descripcion);
+            $stmt->bind_param('sssidsd', $nom_producto, $tipo, $marca, $cantidad_disponible, $precio_venta, $fecha_formateada, $descripcion);
 
             return $stmt->execute();
         } catch (mysqli_sql_exception $e) {
@@ -96,9 +91,9 @@ class ProductController {
         }
     }
 
-    // Actualizar un producto
     public function actualizarProducto($id, $nombre, $tipo, $marca, $cantidad, $precio, $descripcion) {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
@@ -106,9 +101,7 @@ class ProductController {
         try {
             $sql = "UPDATE productos SET nom_producto = ?, tipo = ?, marca = ?, cantidad_disponible = ?, precio_venta = ?, descripcion = ? WHERE idProducto = ?";
             $stmt = $conn->prepare($sql);
-
-            // Corregir la vinculación de tipos de datos
-            $stmt->bind_param('sssdisi', $nombre, $tipo, $marca, $cantidad, $precio, $descripcion, $id);
+            $stmt->bind_param('sssidsi', $nombre, $tipo, $marca, $cantidad, $precio, $descripcion, $id);
 
             return $stmt->execute();
         } catch (mysqli_sql_exception $e) {
@@ -117,15 +110,15 @@ class ProductController {
         }
     }
 
-    // Eliminar un producto
     public function eliminarProducto($idProducto) {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
 
         try {
-            $sql = "DELETE FROM Productos WHERE idProducto = ?";
+            $sql = "DELETE FROM productos WHERE idProducto = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $idProducto);
 
@@ -136,29 +129,28 @@ class ProductController {
         }
     }
 
-    // Método para buscar productos por nombre
     public function buscarProducto($nombre) {
         global $conn;
+
         if (!$conn) {
             die("Error: Conexión a la base de datos no establecida.");
         }
-    
-        // Limpiar y preparar el término de búsqueda
-        $searchTerm = "%" . $conn->real_escape_string($nombre) . "%";
-    
-        $sql = "SELECT * FROM Productos WHERE nom_producto LIKE ?";
+
+        $searchTerm = "%" . $nombre . "%";
+
+        $sql = "SELECT * FROM productos WHERE nom_producto LIKE ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
         $resultado = $stmt->get_result();
-    
+
         $productos = [];
         if ($resultado && $resultado->num_rows > 0) {
             while ($row = $resultado->fetch_assoc()) {
                 $productos[] = $row;
             }
         }
-    
+
         return $productos;
     }
 }

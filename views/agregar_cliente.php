@@ -2,6 +2,7 @@
 require_once '../controllers/ClienteController.php';
 
 $clienteController = new ClienteController();
+$mensaje = "";  // Variable para el mensaje de error o éxito
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recibir y sanitizar los datos del formulario
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($resultado) {
             // Si se guarda correctamente, redirigir
             header("Location: clientes.php?mensaje=Cliente agregado correctamente");
-            exit();
+            exit();  // Detener la ejecución del script para asegurar la redirección
         } else {
             // Si hubo un error en la base de datos
             $mensaje = "Error al guardar cliente. Por favor, inténtelo de nuevo.";
@@ -98,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="form-container">
         <h2><i class="fas fa-user-plus"></i> Agregar Nuevo Cliente</h2>
-        <?php if (isset($mensaje)) { echo '<div class="alert alert-danger">' . $mensaje . '</div>'; } ?>
+        <?php if (!empty($mensaje)) { echo '<div class="alert alert-danger">' . $mensaje . '</div>'; } ?>
         <form method="POST" action="agregar_cliente.php">
             <div class="mb-3">
                 <label class="form-label" for="cedula">Cédula</label>

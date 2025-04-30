@@ -3,7 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);  
 
 // Incluir controlador que maneja la lógica de negocio
-require($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
+//require($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
+// Cambia la ruta al controlador si no es correcta
+require_once(__DIR__ . '/../controllers/ProductController.php');
 
 if (isset($_GET['id'])) {
     $idProducto = $_GET['id'];

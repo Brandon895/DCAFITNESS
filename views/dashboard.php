@@ -1,7 +1,11 @@
 <?php
-echo __DIR__ . '/../controllers/DashboardController.php';
+$path = __DIR__ . '/../controllers/DashboardController.php';
+if (!file_exists($path)) {
+    die("❌ El archivo DashboardController.php no se encuentra en: $path");
+}
+include_once $path;
 
-include __DIR__ . '/../controllers/DashboardController.php';
+//include __DIR__ . '/../controllers/DashboardController.php';
 //include('../controllers/dashboardController.php');
 
 include __DIR__ . '/../controllers/ClienteController.php';

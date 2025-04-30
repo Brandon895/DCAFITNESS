@@ -7,32 +7,28 @@ require_once __DIR__ . '/../models/BitacoraModel.php';
 class BitacoraHelper {
     public static function registrarMovimiento($accion) {
         if (!isset($_SESSION['usuario'])) {
-            die('Usuario no autenticado');
+            return; // No usar die() ni echo
         }
 
         $usuario = $_SESSION['usuario'];
         $fecha = date('Y-m-d H:i:s');
 
-        // Conexión con IP en vez de 'localhost'
+        // Conexión a la base de datos
         $conn = new mysqli('127.0.0.1', 'root', '0895Gazuniga', 'dcafitness');
         if ($conn->connect_error) {
-            die("Conexión fallida: " . $conn->connect_error);
+            return;
         }
 
         $sql = "INSERT INTO bitacora_movimientos (usuario, accion, fecha) 
                 VALUES (?, ?, ?)";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $usuario, $accion, $fecha);
-        $stmt->execute();
 
-        if ($stmt->affected_rows > 0) {
-            echo "Movimiento registrado correctamente.<br>";
-        } else {
-            echo "Error al registrar el movimiento.<br>";
+        $stmt = $conn->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("sss", $usuario, $accion, $fecha);
+            $stmt->execute();
+            $stmt->close();
         }
 
-        $stmt->close();
         $conn->close();
     }
 
@@ -42,10 +38,9 @@ class BitacoraHelper {
         }
 
         if (!isset($_SESSION['usuario'])) {
-            die('Usuario no autenticado');
+            return;
         }
 
         self::registrarMovimiento($accion);
     }
 }
-?>

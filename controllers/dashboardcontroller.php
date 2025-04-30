@@ -14,7 +14,7 @@ class DashboardController {
     public function verificarSesion() {
         if (!isset($_SESSION['usuario'])) {
             // 👇 header debe ejecutarse antes de cualquier salida
-            header("Location: loguin.php");
+            header("Location: dashboard.php");
             exit();
         }
     }

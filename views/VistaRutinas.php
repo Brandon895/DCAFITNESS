@@ -230,7 +230,7 @@ $rutinas = $controller->listarRutinas();
         </table>
 
         <div class="btn-container">
-            <a href="crearrutina.php">
+            <a href="Crearrutina.php">
                 <button class="btn-success"><i class="fas fa-plus-circle"></i> Crear Nueva Rutina</button>
             </a>
             <a href="Vistaejercisio.php">

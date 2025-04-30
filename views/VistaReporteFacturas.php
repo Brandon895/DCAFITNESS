@@ -1,7 +1,7 @@
 <?php
 require_once('../libs/TCPDF/tcpdf.php');
 
-$conexion = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
+$conexion = new mysqli("sql3.freesqldatabase.com", "sql3776084", "vqri3ry8GD", "sql3776084", 3306);
 
 if ($conexion->connect_error) {
     die("Conexión fallida: " . $conexion->connect_error);

@@ -39,59 +39,55 @@ class ClienteController {
         return $this->clienteModel->registrarAcceso($cedula);
     }
 
-    // Método para eliminar un cliente
+    // ✅ Método para eliminar un cliente con pagos relacionados
     public function eliminarCliente($id_cliente) {
-        // Registrar movimiento en la bitácora antes de eliminar el cliente
-        BitacoraHelper::registrarMovimiento('se elimino un cliente', 'Cliente', 'Se eliminó un cliente con ID: ' . $id_cliente);
+        // Registrar en la bitácora antes de eliminar
+        BitacoraHelper::registrarMovimiento('Cliente eliminado', 'Cliente', 'Se intentó eliminar el cliente con ID: ' . $id_cliente);
 
-        // Conectar a la base de datos
         $conn = new mysqli('localhost', 'root', '0895Gazuniga', 'dcafitness');
-        
         if ($conn->connect_error) {
             die("Conexión fallida: " . $conn->connect_error);
         }
 
-        // 1. Eliminar los pagos relacionados con el cliente
-        $sqlPagos = "DELETE FROM pagos WHERE id_cliente = ?";
-        $stmtPagos = $conn->prepare($sqlPagos);
-        $stmtPagos->bind_param("i", $id_cliente);
-        $stmtPagos->execute();
+        // Iniciar transacción
+        $conn->begin_transaction();
 
-        // Verificar si se eliminaron los pagos correctamente
-        if ($stmtPagos->affected_rows > 0) {
-            echo "Registros de pagos eliminados correctamente.<br>";
-        } else {
-            echo "No se encontraron pagos relacionados para eliminar.<br>";
-        }
-
-        // 2. Ahora eliminar el cliente de la tabla clientes
-        $sqlCliente = "DELETE FROM clientes WHERE id_cliente = ?";
-        $stmtCliente = $conn->prepare($sqlCliente);
-        $stmtCliente->bind_param("i", $id_cliente);
-        $stmtCliente->execute();
-
-        // Verificar si el cliente fue eliminado
-        if ($stmtCliente->affected_rows > 0) {
-            // Cerrar las sentencias y conexión
-            $stmtCliente->close();
+        try {
+            // 1. Eliminar pagos relacionados
+            $sqlPagos = "DELETE FROM pagos WHERE id_cliente = ?";
+            $stmtPagos = $conn->prepare($sqlPagos);
+            $stmtPagos->bind_param("i", $id_cliente);
+            $stmtPagos->execute();
             $stmtPagos->close();
-            $conn->close();
-            
-            // Retornar éxito
-            echo "Cliente eliminado correctamente.<br>";
-            return true;
-        } else {
-            // Si no se pudo eliminar el cliente
-            $stmtCliente->close();
-            $stmtPagos->close();
-            $conn->close();
-            
-            echo "No se pudo eliminar el cliente. Puede que tenga pagos pendientes o restricciones.<br>";
+
+            // 2. Eliminar cliente
+            $sqlCliente = "DELETE FROM clientes WHERE id_cliente = ?";
+            $stmtCliente = $conn->prepare($sqlCliente);
+            $stmtCliente->bind_param("i", $id_cliente);
+            $stmtCliente->execute();
+
+            if ($stmtCliente->affected_rows > 0) {
+                $conn->commit();
+                $stmtCliente->close();
+                $conn->close();
+                echo "Cliente y sus pagos relacionados fueron eliminados correctamente.<br>";
+                return true;
+            } else {
+                $conn->rollback();
+                $stmtCliente->close();
+                $conn->close();
+                echo "No se encontró el cliente o no se pudo eliminar.<br>";
+                return false;
+            }
+
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo "Error al eliminar el cliente: " . $e->getMessage() . "<br>";
             return false;
         }
     }
 
-    // Método para buscar clientes por nombre o cédula
+    // ✅ Buscar clientes por nombre o cédula
     public function buscarClientes($term) {
         return $this->clienteModel->buscarClientes($term);
     }

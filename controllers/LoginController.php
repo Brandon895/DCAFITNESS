@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user) {
         if (password_verify($password, $user['contrasena'])) {
-            // Todo correcto, guardamos los datos en la sesión
+            // Validación correcta: iniciar sesión y redirigir
             $_SESSION['id'] = $user['id'];
             $_SESSION['usuario'] = $user['nombreusuario'];
             $_SESSION['rol'] = $user['rol'];
@@ -29,17 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Registrar el acceso en la bitácora
             BitacoraAccesosModel::registrarAcceso($_SESSION['id'], $_SESSION['usuario'], "Inicio de sesión");
 
-            // Redireccionamos al dashboard
+            // Redirigir al dashboard sin enviar ningún output antes
             header("Location: ../views/dashboard.php");
             exit();
         } else {
             // Contraseña incorrecta
-            header("Location: ../views/loguin.php?error=contraseña_incorrecta");
+            header("Location: ../views/login.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // Usuario no encontrado
-        header("Location: ../views/loguin.php?error=usuario_no_encontrado");
+        header("Location: ../views/login.php?error=usuario_no_encontrado");
         exit();
     }
 }

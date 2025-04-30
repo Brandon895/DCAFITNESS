@@ -1,10 +1,12 @@
 <?php
-$databaseUrl = getenv('DATABASE_URL'); // Obtiene la variable de entorno
-$dsn = parse_url($databaseUrl); // Parseamos la URL
-$dbConnection = new mysqli($dsn['host'], $dsn['user'], $dsn['pass'], ltrim($dsn['path'], '/'));
+$host = "sql3.freesqldatabase.com";
+$user = "sql3776084";
+$password = "vqri3ry8GD";  // reemplaza por tu contraseña real
+$dbname = "sql3776084";       // ¡esto debe ser exacto!
 
-if ($dbConnection->connect_error) {
-    die("Connection failed: " . $dbConnection->connect_error);
+$conn = new mysqli($host, $user, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
-echo "Connected successfully!";
 ?>

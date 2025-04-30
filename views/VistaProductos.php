@@ -1,7 +1,8 @@
 <?php
 $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 
-include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
+//include($_SERVER['DOCUMENT_ROOT'] . '/mi_gimnasio/DCAFITNESS/Proyecto/controllers/ProductController.php');
+require_once('../controllers/ProductController.php');
 
 $productController = new ProductController();
 $productos = $productController->obtenerProductos($buscar); 

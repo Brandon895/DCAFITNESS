@@ -20,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = $clienteController->agregarCliente($data);
 
     if ($resultado) {
-        echo "<script>alert('Cliente agregado correctamente'); window.location.href='Clientes.php';</script>";
+        echo "<script>alert('Cliente agregado correctamente');</script>";
+        header("Location: clientes.php");
+        exit(); // Asegura que no se ejecute código adicional después de la redirección
     } else {
         echo "<script>alert('Error al agregar cliente');</script>";
     }
@@ -154,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Guardar Cliente
                 </button>
-                <a href="Clientes.php" class="btn btn-danger">
+                <a href="clientes.php" class="btn btn-danger">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
             </div>

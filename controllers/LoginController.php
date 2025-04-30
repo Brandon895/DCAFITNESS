@@ -7,9 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Debugging: Imprime los valores recibidos
-    var_dump($username, $password);
-
     $sql = "SELECT id, nombreusuario, contrasena, rol FROM usuarios WHERE nombreusuario = ?";
     $stmt = $conn->prepare($sql);
 
@@ -21,9 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-
-    // Debugging: Muestra los resultados obtenidos de la base de datos
-    var_dump($user);
 
     // Verifica si el usuario existe y la contraseña es correcta
     if ($user && password_verify($password, $user['contrasena'])) {

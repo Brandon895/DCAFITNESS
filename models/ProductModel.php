@@ -2,12 +2,13 @@
 class ProductModel {
     private $conn;
 
-    public function __construct() {
-        $this->conn = new mysqli("localhost", "root", "0895Gazuniga", "dcafitness");
-
-        // Verificar la conexión
-        if ($this->conn->connect_error) {
-            die("Conexión fallida: " . $this->conn->connect_error);
+   public function __construct() {
+        // Aquí va la conexión directa como la tenías en tu código original, ajustada a los nuevos parámetros
+        $this->conexion = new mysqli('sql3.freesqldatabase.com', 'sql3776084', 'vqri3ry8GD', 'sql3776084', 3306);
+        
+        // Verificamos la conexión
+        if ($this->conexion->connect_error) {
+            die("Error de conexión: " . $this->conexion->connect_error);
         }
     }
 

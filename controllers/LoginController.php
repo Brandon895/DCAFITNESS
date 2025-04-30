@@ -9,12 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Consulta preparada
     $sql = "SELECT id, nombreusuario, contrasena, rol FROM usuarios WHERE nombreusuario = ?";
-    $stmt = $conn->prepare($sql);
+   $stmt = $conn->prepare($sql);
 
-    // Verificar si la preparación fue exitosa
-    if (!$stmt) {
-        die("Error al preparar la consulta: " . $conn->error);
-    }
+if (!$stmt) {
+    die("Error al preparar SQL: " . $conn->error);
+}
+
+$stmt->bind_param("s", $username);
+
 
     $stmt->bind_param("s", $username);
     $stmt->execute();

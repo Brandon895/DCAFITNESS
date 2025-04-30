@@ -248,7 +248,7 @@ $usuario = ($rol == 'admin') ? 'Admin' : 'Entrenador';
     <a href="#"><i class="fas fa-home"></i> Inicio</a>
     <?php if ($rol == 'admin'): ?>
         <a href="vistaUsuarios.php"><i class="fas fa-users"></i> Gestión de Usuarios</a>
-        <a href="Vista_Reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a>
+        <a href="vista_reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a>
         <a href="VistaProductos.php"><i class="fas fa-box"></i> Productos</a>
     <?php endif; ?>
     <?php if ($rol == 'entrenador' || $rol == 'admin'): ?>
